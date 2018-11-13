@@ -4,6 +4,8 @@ var mots = ["voyage", "japon", "chat", "animaux", "portable", "ordinateur", "vie
 //choix d'un mot aléatoirement
 var choixOrdi = mots[Math.floor(mots.length * Math.random())];
 
+var vie = 10;
+
 //Ligne de tiret équivalent au nombre de lettre à trouver
 for (var i = 0; i < choixOrdi.length; i++) {
     var tirets = document.createElement('span');
@@ -23,6 +25,7 @@ function afficherLettre (recupLettre, index) {
     }
 }
 
+//fonction qui vérifie si la lettre donné est dans le mot random
 function verif() {
 
     var recupLettre = document.getElementById('lettre').value;
@@ -32,10 +35,25 @@ function verif() {
         if (choixOrdi[i] == recupLettre)
         {
             afficherLettre(recupLettre, i);
+            document.getElementById('rep').innerHTML = '';
         }
+        if (choixOrdi.indexOf(recupLettre) == -1)
+        {
+            document.getElementById('rep').innerHTML = "Cette lettre ne correspond pas";
+
+        }
+    }
+    if (choixOrdi.indexOf(recupLettre) == -1){
+        vie = vie-1;
+        document.getElementById('nbrVie').innerHTML = "Il vous reste "+ vie + " possibilités.";
+    }
+    if(vie == 0){
+        alert("Vous avez perdu. Le mot était " + choixOrdi + ".");
+        window.location.reload();
     }
 }
 
+//boutton click
 document.getElementById('envoyer').addEventListener('click', function () {
     verif();
     afficherLettre();
