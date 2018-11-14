@@ -43,7 +43,7 @@ function verif() {
         }
         if (choixOrdi.indexOf(recupLettre) == -1)
         {
-            document.getElementById('rep').innerHTML = "Cette lettre ne correspond pas";
+            document.getElementById('rep').innerHTML = "Cette lettre ne correspond pas !";
             document.getElementById('lettre').value = "";
         }
     }
