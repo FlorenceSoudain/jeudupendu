@@ -39,12 +39,12 @@ function verif() {
             afficherLettre(recupLettre, i);
             document.getElementById('rep').innerHTML = '';
             nbrLettre++;
+            document.getElementById('lettre').value = "";
         }
         if (choixOrdi.indexOf(recupLettre) == -1)
         {
             document.getElementById('rep').innerHTML = "Cette lettre ne correspond pas";
-
-
+            document.getElementById('lettre').value = "";
         }
     }
     if (choixOrdi.indexOf(recupLettre) == -1){
@@ -57,6 +57,7 @@ function verif() {
     }
 }
 
+//fonction victoire quand on a trouvé toutes les lettres
 function victoire(){
 
     if(nbrLettre == choixOrdi.length)
@@ -66,11 +67,20 @@ function victoire(){
     }
 }
 
+//fonction pour changer la couleur de la div nbrVie quand il ne reste plus que 3 possibilités à l'utilisateur
+function couleur(){
+    if (vie < 4){
+        document.getElementById('nbrVie').style.color = "red";
+    }
+}
+
 //boutton click
 document.getElementById('envoyer').addEventListener('click', function () {
     verif();
     afficherLettre();
     victoire();
+    couleur();
+
 });
 
 
