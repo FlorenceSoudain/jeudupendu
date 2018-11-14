@@ -5,6 +5,7 @@ var mots = ["voyage", "japon", "chat", "animaux", "portable", "ordinateur", "vie
 var choixOrdi = mots[Math.floor(mots.length * Math.random())];
 
 var vie = 10;
+var nbrLettre = 0;
 
 //Ligne de tiret équivalent au nombre de lettre à trouver
 for (var i = 0; i < choixOrdi.length; i++) {
@@ -29,6 +30,7 @@ function afficherLettre (recupLettre, index) {
 function verif() {
 
     var recupLettre = document.getElementById('lettre').value;
+    var recupSpan = document.getElementsByTagName('span');
 
     for (var i = 0; i < choixOrdi.length; i++)
     {
@@ -36,10 +38,12 @@ function verif() {
         {
             afficherLettre(recupLettre, i);
             document.getElementById('rep').innerHTML = '';
+            nbrLettre++;
         }
         if (choixOrdi.indexOf(recupLettre) == -1)
         {
             document.getElementById('rep').innerHTML = "Cette lettre ne correspond pas";
+
 
         }
     }
@@ -53,13 +57,22 @@ function verif() {
     }
 }
 
+function victoire(){
+
+    if(nbrLettre == choixOrdi.length)
+    {
+        alert("Félicitation ! Vous avez gagné.");
+        window.location.reload();
+    }
+}
+
 //boutton click
 document.getElementById('envoyer').addEventListener('click', function () {
     verif();
     afficherLettre();
+    victoire();
 });
 
 
 //divers console.log
 console.log(choixOrdi);
-console.log(choixOrdi.length);
